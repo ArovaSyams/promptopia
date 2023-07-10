@@ -1,9 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
 
-const Form = ({
-  type, post, setPost, submitting, handleSubmit
-}) => {
+const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+  
   return (
     <section className="w-full max-w-full flext-start flex-col">
       <h1 className="head_text text-left"><span className="blue_gradient">{type} Post</span></h1>
@@ -41,12 +40,11 @@ const Form = ({
             Cancel
           </Link>
 
-          <button type='submit' disabled="submitting" className='px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white'>
+          <button type="submit" disabled={submitting} className='px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white'>
             {submitting ? `${type}...` : type}
           </button>
 
         </div>
-
 
       </form>
     </section>
