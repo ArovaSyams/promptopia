@@ -3,9 +3,11 @@
 import { useState, useEffect } from 'react'
 import PromptCard from './PromptCard'
 
-const PromptCardList = (data, handleTagClick) => {
+const PromptCardList = ({ data, handleTagClick }) => {
+  console.log(data);
   return (
     <div className='mt-16 prompt_layout'>
+
       {data.map((post) => (
         <PromptCard
         key={post._id}
@@ -14,27 +16,26 @@ const PromptCardList = (data, handleTagClick) => {
         />
       ))}
     </div>
-  )
+  ) 
 }
 
 const Feed = () => {
   const [searchText, setSearchText] = useState('');
   const [posts, setPosts] = useState([]);
-  
+
   const handleSearchChange = (e) => {
-    
+   
   }
   
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchPosts = async () => {
       const response = await fetch('/api/prompt');
       const data = response.json();
       
-      console.log(data);
-      setPosts(data);
+      setPosts([data]);
     }
     
-    fetchPost();
+    fetchPosts();
   }, []);
 
   return (
@@ -50,10 +51,8 @@ const Feed = () => {
         />
       </form>
 
-      <PromptCardList
-        data={posts}
-        handleTagClick={() => {}}
-      />
+      <PromptCardList data={posts} handleTagClick={() => {}} />
+
     </section>
   )
 }
