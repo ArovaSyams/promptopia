@@ -10,10 +10,14 @@ const EditPrompt = () => {
   const promptId = searchParams.get('id');
 
   const [submitting, setSubmitting] = useState(false);
+
+  // state to catch the data
   const [post, setPost] = useState({
     prompt: '',
     tag: ''
   });
+
+  // get only the wanted data to edit
   useEffect(() => {
     const getPromptDetails = async () => {
       const response = await fetch(`/api/prompt/${promptId}`);
@@ -29,13 +33,16 @@ const EditPrompt = () => {
     if(promptId) getPromptDetails();
   }, [promptId]);
 
+  // update data
   const updatePrompt = async (e) => {
     e.preventDefault();
     setSubmitting(true);
       
+    // check if prompt ID not found
     if(!promptId) return alert('Prompt ID not found');
 
     try {
+      // update the data
       const response = await fetch(`/api/prompt/${promptId}`, {
         method: 'PATCH',
         body: JSON.stringify({

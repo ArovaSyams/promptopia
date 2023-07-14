@@ -11,6 +11,7 @@ const MyProfile = () => {
 
   const [posts, setPosts] = useState([]);
 
+  // fetch all user prompts data
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/posts`);
@@ -22,10 +23,12 @@ const MyProfile = () => {
     if(session?.user.id) fetchPosts();
   }, []);
   
+  // redirect to the edit prompt page
   const handleEdit = (post) => {
     router.push(`/update-prompt?id=${post._id}`);
   }
 
+  // handle the delete
   const handleDelete = async (post) => {
     const hasConfirmed = confirm("Are you sure want to delete this prompt?");
 

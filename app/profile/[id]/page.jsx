@@ -9,6 +9,7 @@ const UserProfile = ({ params }) => {
   const profileName = searchParams.get('name');
   const [userPosts, setUserPosts] = useState([]);
 
+  // fetch only visited user prompts data
   useEffect(() => {
     const fetchPosts = async () => {
 
